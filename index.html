@@ -1,0 +1,1242 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المنصة التفاعلية للرزنامة والخريطة التكوينية 2026-2027 | وزارة التربية الوطنية</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Cairo & Amiri -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            500: '#15803d',
+                            600: '#166534',
+                            700: '#14532d',
+                            800: '#0f3f22',
+                            900: '#052e16',
+                        },
+                        gold: {
+                            500: '#d97706',
+                            600: '#b45309',
+                        }
+                    },
+                    fontFamily: {
+                        cairo: ['Cairo', 'sans-serif'],
+                        amiri: ['Amiri', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #f8fafc;
+        }
+        .stamp-border {
+            border: 2px dashed #dc2626;
+        }
+        @media print {
+            .no-print { display: none !important; }
+            .print-only { display: block !important; }
+            body { background: white; color: black; }
+        }
+    </style>
+</head>
+<body class="text-slate-800 antialiased min-h-screen flex flex-col">
+
+    <!-- Top Official Banner -->
+    <header class="bg-gradient-to-r from-emerald-900 via-emerald-800 to-green-900 text-white shadow-xl border-b-4 border-amber-500">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-right">
+                <!-- Emblem & Header titles -->
+                <div class="flex items-center space-x-4 space-x-reverse">
+                    <div class="w-16 h-16 rounded-full bg-white/10 backdrop-blur border border-white/20 flex items-center justify-center p-2 shadow-inner">
+                        <i class="fa-solid fa-graduation-cap text-3xl text-amber-400"></i>
+                    </div>
+                    <div>
+                        <div class="text-xs sm:text-sm text-emerald-200 font-medium tracking-wide">الجمهورية الجزائرية الديمقراطية الشعبية</div>
+                        <h1 class="text-lg sm:text-2xl font-bold font-amiri text-white">وزارة التربية الوطنية</h1>
+                        <p class="text-xs sm:text-sm text-emerald-300">المديرية العامة للموارد البشرية والتكوين - مديرية التكوين</p>
+                    </div>
+                </div>
+
+                <!-- Document Stamp / Badge Info -->
+                <div class="bg-emerald-950/60 border border-emerald-600/40 rounded-xl px-4 py-2.5 backdrop-blur-sm flex items-center gap-3">
+                    <div class="text-right">
+                        <span class="inline-block px-2 py-0.5 bg-amber-500/20 text-amber-300 border border-amber-500/30 rounded text-xs font-semibold">المقرر الرسمي 06.06</span>
+                        <div class="text-sm font-semibold text-white mt-0.5">الخريطة والرزنامة التكوينية 2026 - 2027</div>
+                    </div>
+                    <i class="fa-solid fa-stamp text-amber-400 text-2xl opacity-80"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <nav class="bg-emerald-950/80 border-t border-emerald-700/50 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto flex flex-wrap gap-2 py-2">
+                <button onclick="switchTab('by-wilaya')" id="tab-btn-by-wilaya" class="nav-tab active-tab px-4 py-2 rounded-lg text-sm font-semibold flex items-center gap-2 transition bg-emerald-600 text-white shadow">
+                    <i class="fa-solid fa-map-location-dot"></i> البحث حسب الولاية
+                </button>
+                <button onclick="switchTab('by-rank')" id="tab-btn-by-rank" class="nav-tab px-4 py-2 rounded-lg text-sm font-semibold flex items-center gap-2 transition text-emerald-100 hover:bg-emerald-800/60">
+                    <i class="fa-solid fa-user-tie"></i> البحث حسب الرتبة
+                </button>
+                <button onclick="switchTab('institutes')" id="tab-btn-institutes" class="nav-tab px-4 py-2 rounded-lg text-sm font-semibold flex items-center gap-2 transition text-emerald-100 hover:bg-emerald-800/60">
+                    <i class="fa-solid fa-building-columns"></i> دليل المعاهد والمراكز (13+)
+                </button>
+                <button onclick="switchTab('schedule')" id="tab-btn-schedule" class="nav-tab px-4 py-2 rounded-lg text-sm font-semibold flex items-center gap-2 transition text-emerald-100 hover:bg-emerald-800/60">
+                    <i class="fa-solid fa-calendar-days"></i> الرزنامة والمواقيت الرسمية
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+
+        <!-- TAB 1: SEARCH BY WILAYA (Default) -->
+        <section id="tab-by-wilaya" class="tab-pane space-y-6">
+            <!-- Search & Filter Card -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
+                <div class="max-w-3xl mx-auto text-center mb-6">
+                    <h2 class="text-2xl font-bold text-slate-800 mb-2">استعلام التكوين الخاص بالولايات</h2>
+                    <p class="text-sm text-slate-500">اختر الولاية أو اكتب اسمها لمعرفة المعهد الوطني المحتضن لتكوينها ومراكز الإجراء الخاصة بكل رتبة</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center">
+                    <div class="md:col-span-8 relative">
+                        <label for="wilaya-select" class="block text-xs font-semibold text-slate-600 mb-1">اختر الولاية:</label>
+                        <div class="relative">
+                            <select id="wilaya-select" onchange="renderWilayaResults()" class="w-full appearance-none bg-slate-50 border border-slate-300 text-slate-900 text-base rounded-xl focus:ring-2 focus:ring-emerald-600 focus:border-emerald-600 block p-3.5 pr-11 font-medium shadow-sm transition">
+                                <option value="" disabled selected>-- اختر ولايتك من القائمة --</option>
+                            </select>
+                            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-emerald-600">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center px-4 text-slate-400">
+                                <i class="fa-solid fa-chevron-down text-xs"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="md:col-span-4 flex items-end gap-2 pt-5">
+                        <button onclick="resetWilayaSearch()" class="w-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold py-3.5 px-4 rounded-xl text-sm transition flex items-center justify-center gap-2 border border-slate-300">
+                            <i class="fa-solid fa-rotate-left"></i> إعادة تعيين
+                        </button>
+                        <button onclick="window.print()" class="no-print bg-emerald-700 hover:bg-emerald-800 text-white font-semibold py-3.5 px-4 rounded-xl text-sm transition flex items-center justify-center gap-2 shadow-sm">
+                            <i class="fa-solid fa-print"></i> طباعة
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Quick Wilaya Chips -->
+                <div class="mt-4 pt-4 border-t border-slate-100 flex flex-wrap items-center gap-1.5 text-xs text-slate-600">
+                    <span class="font-bold text-slate-700 ml-1"><i class="fa-solid fa-fire text-amber-500"></i> اقتراحات سريعة:</span>
+                    <button onclick="selectQuickWilaya('الجزائر (شرق/وسط/غرب)')" class="px-2.5 py-1 bg-slate-100 hover:bg-emerald-50 hover:text-emerald-700 rounded-lg transition border border-slate-200">الجزائر (شرق/وسط/غرب)</button>
+                    <button onclick="selectQuickWilaya('سطيف')" class="px-2.5 py-1 bg-slate-100 hover:bg-emerald-50 hover:text-emerald-700 rounded-lg transition border border-slate-200">سطيف</button>
+                    <button onclick="selectQuickWilaya('وهران')" class="px-2.5 py-1 bg-slate-100 hover:bg-emerald-50 hover:text-emerald-700 rounded-lg transition border border-slate-200">وهران</button>
+                    <button onclick="selectQuickWilaya('قسنطينة')" class="px-2.5 py-1 bg-slate-100 hover:bg-emerald-50 hover:text-emerald-700 rounded-lg transition border border-slate-200">قسنطينة</button>
+                    <button onclick="selectQuickWilaya('البليدة')" class="px-2.5 py-1 bg-slate-100 hover:bg-emerald-50 hover:text-emerald-700 rounded-lg transition border border-slate-200">البليدة</button>
+                    <button onclick="selectQuickWilaya('ورقلة')" class="px-2.5 py-1 bg-slate-100 hover:bg-emerald-50 hover:text-emerald-700 rounded-lg transition border border-slate-200">ورقلة</button>
+                    <button onclick="selectQuickWilaya('بسكرة')" class="px-2.5 py-1 bg-slate-100 hover:bg-emerald-50 hover:text-emerald-700 rounded-lg transition border border-slate-200">بسكرة (مركز إجراء)</button>
+                    <button onclick="selectQuickWilaya('البيض')" class="px-2.5 py-1 bg-slate-100 hover:bg-emerald-50 hover:text-emerald-700 rounded-lg transition border border-slate-200">البيض (مركز إجراء)</button>
+                </div>
+            </div>
+
+            <!-- Empty State / Placeholder -->
+            <div id="wilaya-placeholder" class="bg-white rounded-2xl p-12 text-center border-2 border-dashed border-slate-300">
+                <div class="w-20 h-20 mx-auto rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center text-3xl mb-4">
+                    <i class="fa-solid fa-map"></i>
+                </div>
+                <h3 class="text-lg font-bold text-slate-800">الرجاء اختيار الولاية من القائمة أعلاه</h3>
+                <p class="text-sm text-slate-500 max-w-md mx-auto mt-1">ستظهر هنا تفاصيل المعهد المحتضن للتكوين والرتب المعنية، بالإضافة إلى تنبيهات مراكز الإجراء الاستثنائية إن وجدت.</p>
+            </div>
+
+            <!-- Results Container -->
+            <div id="wilaya-results" class="hidden space-y-6">
+                <!-- Summary Header -->
+                <div class="bg-gradient-to-r from-emerald-800 to-teal-900 text-white rounded-2xl p-6 shadow-md flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                    <div>
+                        <div class="text-xs text-emerald-200 mb-1 flex items-center gap-1.5">
+                            <i class="fa-solid fa-circle-check text-emerald-400"></i> بيانات التوزيع الرسمية لسنة 2026-2027
+                        </div>
+                        <h3 class="text-2xl font-bold flex items-center gap-2">
+                            <span>ولاية:</span>
+                            <span id="selected-wilaya-name" class="text-amber-300 underline underline-offset-8"></span>
+                        </h3>
+                    </div>
+                    <div id="special-center-badge" class="hidden bg-amber-500/20 border border-amber-400/40 px-4 py-2 rounded-xl text-amber-200 text-xs">
+                        <i class="fa-solid fa-triangle-exclamation text-amber-300 ml-1"></i> تتضمن مركز إجراء محلي استثنائي
+                    </div>
+                </div>
+
+                <!-- Grouping by Institutes or Specific Roles -->
+                <div id="wilaya-cards-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Dynamic Cards will be rendered here -->
+                </div>
+
+                <!-- Special Warning Box if applicable -->
+                <div id="wilaya-note-box" class="hidden bg-amber-50 border-r-4 border-amber-500 p-4 rounded-xl text-amber-900 text-sm">
+                    <div class="flex items-start gap-3">
+                        <i class="fa-solid fa-circle-info text-amber-600 text-lg mt-0.5"></i>
+                        <div id="wilaya-note-content"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 2: SEARCH BY RANK -->
+        <section id="tab-by-rank" class="tab-pane hidden space-y-6">
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
+                <div class="max-w-2xl mx-auto text-center mb-6">
+                    <h2 class="text-2xl font-bold text-slate-800 mb-2">استعلام التكوين حسب الرتبة</h2>
+                    <p class="text-sm text-slate-500">اختر الرتبة لعرض المعاهد والمراكز المخولة بتكوينها والولايات التابعة لكل منها</p>
+                </div>
+
+                <div class="max-w-xl mx-auto">
+                    <label for="rank-select" class="block text-xs font-semibold text-slate-600 mb-1">اختر الرتبة الإدارية أو التربوية:</label>
+                    <select id="rank-select" onchange="renderRankResults()" class="w-full bg-slate-50 border border-slate-300 text-slate-900 text-base rounded-xl focus:ring-2 focus:ring-emerald-600 focus:border-emerald-600 p-3.5 pr-4 font-medium shadow-sm">
+                        <option value="" disabled selected>-- اختر الرتبة --</option>
+                        <option value="مدير ثانوية">مدير ثانوية (تكوين متخصص للترقية)</option>
+                        <option value="مدير متوسطة">مدير متوسطة (تكوين متخصص للترقية)</option>
+                        <option value="مدير مدرسة ابتدائية">مدير مدرسة ابتدائية (تكوين متخصص للترقية)</option>
+                        <option value="مشرف عام للتربية">مشرف عام للتربية (تكوين قبل الترقية)</option>
+                        <option value="مشرف رئيسي للتربية">مشرف رئيسي للتربية (تكوين قبل الترقية)</option>
+                        <option value="مشرف التربية">مشرف التربية (تكوين قبل الترقية)</option>
+                        <option value="نائب مقتصد مسير">نائب مقتصد مسير (تكوين قبل الترقية)</option>
+                        <option value="نائب مقتصد">نائب مقتصد (تكوين قبل الترقية)</option>
+                        <option value="ملحق رئيسي بالمخابر">ملحق رئيسي بالمخابر (تكوين قبل الترقية)</option>
+                        <option value="مفتش التعليم الابتدائي">مفتش التعليم الابتدائي (المواد وإدارة المدارس)</option>
+                        <option value="مفتش التعليم المتوسط والثانوي">مفتش التعليم المتوسط والثانوي (معهد الحراش الوطني)</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Rank Results Container -->
+            <div id="rank-results-container" class="space-y-4">
+                <div id="rank-placeholder" class="bg-white rounded-2xl p-12 text-center border-2 border-dashed border-slate-300">
+                    <i class="fa-solid fa-id-card-clip text-slate-300 text-5xl mb-3"></i>
+                    <p class="text-slate-500 font-medium">يرجى تحديد رتبة من القائمة لعرض خريطة توزيع المعاهد الخاصة بها.</p>
+                </div>
+                <div id="rank-cards" class="hidden grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+            </div>
+        </section>
+
+        <!-- TAB 3: INSTITUTES & CENTERS DIRECTORY -->
+        <section id="tab-institutes" class="tab-pane hidden space-y-6">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-white p-6 rounded-2xl border border-slate-200">
+                <div>
+                    <h2 class="text-xl font-bold text-slate-800">المعاهد الوطنية ومراكز الإجراء المعتمدة</h2>
+                    <p class="text-sm text-slate-500">دليل كافة المعاهد الوطنية لتكوين موظفي التربية والمؤسسات التربوية الاستثنائية</p>
+                </div>
+                <div class="relative w-full md:w-72">
+                    <input type="text" id="institute-filter" oninput="filterInstitutes()" placeholder="بحث باسم المعهد أو الولاية..." class="w-full pl-3 pr-9 py-2 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-emerald-600 focus:outline-none">
+                    <i class="fa-solid fa-search absolute right-3 top-3 text-slate-400 text-sm"></i>
+                </div>
+            </div>
+
+            <!-- Institutes List Grid -->
+            <div id="institutes-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Injected via JavaScript -->
+            </div>
+
+            <!-- Special Exception Note Page 8 -->
+            <div class="bg-amber-50 rounded-2xl p-6 border border-amber-200">
+                <div class="flex items-start gap-4">
+                    <div class="p-3 bg-amber-200/60 rounded-xl text-amber-800 text-xl">
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-base font-bold text-amber-900 mb-1">ملاحظة تنظيمية هامة (الخريطة التكوينية رقم 4):</h4>
+                        <p class="text-sm text-amber-800 leading-relaxed">
+                            تمت الاستعانة استثناءً بمؤسسات التربية والتعليم العمومية (ثانويات ومتوسطات مؤهلة كمراكز إجراء) بسبب الأشغال التي مست الإقامة على مستوى المعاهد الوطنية للتكوين المعنية وطاقة استيعابها، وذلك لولايات: <strong>البيض</strong>، <strong>النعامة</strong>، <strong>بسكرة</strong>، <strong>أولاد جلال</strong>، و<strong>تبسة</strong>، تحت إشراف ومتابعة المعاهد المحددة بالوثيقة.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 4: OFFICIAL SCHEDULE & DATES -->
+        <section id="tab-schedule" class="tab-pane hidden space-y-6">
+            <!-- Schedule Header -->
+            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                <div>
+                    <span class="inline-block px-3 py-1 bg-emerald-100 text-emerald-800 rounded-full text-xs font-bold mb-2">الرزنامة المعتمدة</span>
+                    <h2 class="text-2xl font-bold text-slate-800">مواقيت ودورات التكوين للسنة 2026/2027</h2>
+                    <p class="text-sm text-slate-500">تفاصيل الفترات النظرية، التربصات التطبيقية، وفترات الامتحانات ومناقشة المذكرات</p>
+                </div>
+                <div class="flex gap-2">
+                    <button onclick="window.print()" class="no-print bg-slate-800 hover:bg-slate-900 text-white text-xs font-semibold px-4 py-2.5 rounded-xl transition flex items-center gap-2">
+                        <i class="fa-solid fa-file-pdf"></i> طباعة الرزنامة
+                    </button>
+                </div>
+            </div>
+
+            <!-- Schedule Category 1: National Institutes (Page 1) -->
+            <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+                <div class="bg-emerald-900 text-white px-6 py-4 flex items-center justify-between">
+                    <h3 class="font-bold text-base flex items-center gap-2">
+                        <i class="fa-solid fa-calendar-check text-amber-400"></i>
+                        رزنامة المعاهد الوطنية لتكوين موظفي قطاع التربية وبالمؤسسات العمومية
+                    </h3>
+                    <span class="text-xs bg-emerald-800 px-3 py-1 rounded-full border border-emerald-700">الصفحة 1 من الوثيقة</span>
+                </div>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-right text-xs md:text-sm">
+                        <thead class="bg-slate-100 text-slate-700 font-bold border-b border-slate-200">
+                            <tr>
+                                <th class="p-3.5">الرتبة المعنية</th>
+                                <th class="p-3.5">نمط التكوين والساعات</th>
+                                <th class="p-3.5">التكوين النظري</th>
+                                <th class="p-3.5">التربص التطبيقي</th>
+                                <th class="p-3.5">امتحانات نهاية التكوين والمناقشة</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100">
+                            <!-- مدیر مدرسة ابتدائية -->
+                            <tr class="hover:bg-slate-50/80">
+                                <td class="p-3.5 font-bold text-emerald-900">مدير مدرسة ابتدائية</td>
+                                <td class="p-3.5 text-slate-600">تكوين متخصص للترقية</td>
+                                <td class="p-3.5">
+                                    <span class="inline-block bg-blue-50 text-blue-700 px-2 py-0.5 rounded font-mono font-medium">08-11-2026 إلى 19-11-2026</span>
+                                    <div class="text-[11px] text-slate-400 mt-0.5">(2 أسبوعين)</div>
+                                </td>
+                                <td class="p-3.5">
+                                    <span class="inline-block bg-teal-50 text-teal-700 px-2 py-0.5 rounded font-mono font-medium">22-11-2026 إلى 03-12-2026</span>
+                                    <div class="text-[11px] text-slate-400 mt-0.5">(2 أسبوعين)</div>
+                                </td>
+                                <td rowspan="4" class="p-3.5 bg-amber-50/40 align-middle text-amber-900 border-r border-slate-200">
+                                    <div class="font-bold text-xs">من 02-05-2027 إلى 06-05-2027</div>
+                                    <div class="text-[11px] text-slate-500 mt-1">تكوين نظري: 420 ساعة<br>تربص تطبيقي: شهران (02)</div>
+                                </td>
+                            </tr>
+                            <!-- مدير متوسطة -->
+                            <tr class="hover:bg-slate-50/80">
+                                <td class="p-3.5 font-bold text-emerald-900">مدير متوسطة</td>
+                                <td class="p-3.5 text-slate-600">تكوين متخصص للترقية</td>
+                                <td class="p-3.5">
+                                    <span class="inline-block bg-blue-50 text-blue-700 px-2 py-0.5 rounded font-mono font-medium">06-12-2026 إلى 24-12-2026</span>
+                                    <div class="text-[11px] text-slate-400 mt-0.5">(3 أسابيع)</div>
+                                </td>
+                                <td class="p-3.5">
+                                    <span class="inline-block bg-teal-50 text-teal-700 px-2 py-0.5 rounded font-mono font-medium">27-12-2026 إلى 31-12-2026</span>
+                                    <div class="text-[11px] text-slate-400 mt-0.5">(أسبوع 1)</div>
+                                </td>
+                            </tr>
+                            <!-- مدير ثانوية -->
+                            <tr class="hover:bg-slate-50/80">
+                                <td class="p-3.5 font-bold text-emerald-900">مدير ثانوية</td>
+                                <td class="p-3.5 text-slate-600">تكوين متخصص للترقية</td>
+                                <td class="p-3.5">
+                                    <span class="inline-block bg-blue-50 text-blue-700 px-2 py-0.5 rounded font-mono font-medium">03-01-2027 إلى 14-01-2027</span>
+                                    <div class="text-[11px] text-slate-400 mt-0.5">(2 أسبوعين)</div>
+                                </td>
+                                <td class="p-3.5">
+                                    <span class="inline-block bg-teal-50 text-teal-700 px-2 py-0.5 rounded font-mono font-medium">17-01-2027 إلى 21-01-2027</span>
+                                    <div class="text-[11px] text-slate-400 mt-0.5">(أسبوع 1)</div>
+                                </td>
+                            </tr>
+                            <!-- مفتش التعليم الابتدائي -->
+                            <tr class="hover:bg-slate-50/80">
+                                <td class="p-3.5 font-bold text-emerald-900">
+                                    مفتش التعليم الابتدائي
+                                    <span class="block text-[11px] font-normal text-slate-500">(تخصص المواد وإدارة المدارس الابتدائية)</span>
+                                </td>
+                                <td class="p-3.5 text-slate-600">تكوين متخصص للترقية</td>
+                                <td class="p-3.5">
+                                    <div class="space-y-1">
+                                        <div><span class="bg-blue-50 text-blue-700 px-1.5 py-0.5 rounded font-mono text-[11px]">24-01-2027 إلى 04-02-2027</span> (2 أسبوع)</div>
+                                        <div><span class="bg-blue-50 text-blue-700 px-1.5 py-0.5 rounded font-mono text-[11px]">21-03-2027 إلى 08-04-2027</span> (3 أسابيع)</div>
+                                        <div><span class="bg-blue-50 text-blue-700 px-1.5 py-0.5 rounded font-mono text-[11px]">18-04-2027 إلى 29-04-2027</span> (2 أسبوع)</div>
+                                    </div>
+                                </td>
+                                <td class="p-3.5">
+                                    <div class="space-y-1">
+                                        <div><span class="bg-teal-50 text-teal-700 px-1.5 py-0.5 rounded font-mono text-[11px]">14-02-2027 إلى 04-03-2027</span> (3 أسابيع)</div>
+                                        <div><span class="bg-teal-50 text-teal-700 px-1.5 py-0.5 rounded font-mono text-[11px]">11-04-2027 إلى 15-04-2027</span> (أسبوع 1)</div>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <!-- مشرف رئيسي + مشرف عام + نائب مقتصد مسير -->
+                            <tr class="hover:bg-slate-50/80 bg-slate-50/40">
+                                <td class="p-3.5 font-bold text-emerald-900">
+                                    • مشرف رئيسي للتربية<br>
+                                    • مشرف عام للتربية<br>
+                                    • نائب مقتصد مسير
+                                </td>
+                                <td class="p-3.5 text-slate-600">
+                                    التكوين قبل الترقية
+                                    <div class="text-[11px] text-slate-500 mt-1">تكوين نظري: 400 ساعة<br>تربص تطبيقي: شهر واحد (01)</div>
+                                </td>
+                                <td class="p-3.5">
+                                    <div class="space-y-1 text-xs">
+                                        <div><span class="font-mono bg-blue-50 text-blue-700 px-1.5 py-0.5 rounded">08-11-2026 إلى 19-11-2026</span> (2 أسبوع)</div>
+                                        <div><span class="font-mono bg-blue-50 text-blue-700 px-1.5 py-0.5 rounded">06-12-2026 إلى 24-12-2026</span> (3 أسابيع)</div>
+                                        <div><span class="font-mono bg-blue-50 text-blue-700 px-1.5 py-0.5 rounded">03-01-2027 إلى 14-01-2027</span> (2 أسبوع)</div>
+                                        <div><span class="font-mono bg-blue-50 text-blue-700 px-1.5 py-0.5 rounded">24-01-2027 إلى 04-02-2027</span> (2 أسبوع)</div>
+                                        <div><span class="font-mono bg-blue-50 text-blue-700 px-1.5 py-0.5 rounded">21-03-2027 إلى 08-04-2027</span> (3 أسابيع)</div>
+                                        <div><span class="font-mono bg-blue-50 text-blue-700 px-1.5 py-0.5 rounded">18-04-2027 إلى 22-04-2027</span> (1 أسبوع)</div>
+                                    </div>
+                                </td>
+                                <td class="p-3.5">
+                                    <div class="space-y-1 text-xs">
+                                        <div><span class="font-mono bg-teal-50 text-teal-700 px-1.5 py-0.5 rounded">29-11-2026 إلى 03-12-2026</span> (1 أسبوع)</div>
+                                        <div><span class="font-mono bg-teal-50 text-teal-700 px-1.5 py-0.5 rounded">17-01-2027 إلى 21-01-2027</span> (1 أسبوع)</div>
+                                        <div><span class="font-mono bg-teal-50 text-teal-700 px-1.5 py-0.5 rounded">14-02-2027 إلى 18-02-2027</span> (1 أسبوع)</div>
+                                        <div><span class="font-mono bg-teal-50 text-teal-700 px-1.5 py-0.5 rounded">11-04-2027 إلى 15-04-2027</span> (1 أسبوع)</div>
+                                    </div>
+                                </td>
+                                <td class="p-3.5 bg-amber-50/40 text-amber-900 border-r border-slate-200">
+                                    <span class="font-bold text-xs">من 25-04-2027 إلى 29-04-2027</span>
+                                    <div class="text-[11px] text-slate-500 mt-1">مناقشة المذكرة وامتحانات نهاية التكوين</div>
+                                </td>
+                            </tr>
+
+                            <!-- مشرف التربية + ملحق رئيسي بالمخابر + نائب مقتصد -->
+                            <tr class="hover:bg-slate-50/80">
+                                <td class="p-3.5 font-bold text-emerald-900">
+                                    • مشرف التربية<br>
+                                    • ملحق رئيسي بالمخابر<br>
+                                    • نائب مقتصد
+                                </td>
+                                <td class="p-3.5 text-slate-600">
+                                    التكوين قبل الترقية
+                                    <div class="text-[11px] text-slate-500 mt-1">تكوين نظري: 336 ساعة<br>تربص تطبيقي: شهر واحد (01)</div>
+                                </td>
+                                <td class="p-3.5">
+                                    <div class="space-y-1 text-xs">
+                                        <div><span class="font-mono bg-blue-50 text-blue-700 px-1.5 py-0.5 rounded">08-11-2026 إلى 19-11-2026</span> (2 أسبوع)</div>
+                                        <div><span class="font-mono bg-blue-50 text-blue-700 px-1.5 py-0.5 rounded">06-12-2026 إلى 17-12-2026</span> (2 أسبوع)</div>
+                                        <div><span class="font-mono bg-blue-50 text-blue-700 px-1.5 py-0.5 rounded">03-01-2027 إلى 14-01-2027</span> (2 أسبوع)</div>
+                                        <div><span class="font-mono bg-blue-50 text-blue-700 px-1.5 py-0.5 rounded">24-01-2027 إلى 04-02-2027</span> (2 أسبوع)</div>
+                                        <div><span class="font-mono bg-blue-50 text-blue-700 px-1.5 py-0.5 rounded">21-03-2027 إلى 01-04-2027</span> (2 أسبوع)</div>
+                                        <div><span class="font-mono bg-blue-50 text-blue-700 px-1.5 py-0.5 rounded">18-04-2027 إلى 22-04-2027</span> (1 أسبوع)</div>
+                                    </div>
+                                </td>
+                                <td class="p-3.5">
+                                    <div class="space-y-1 text-xs">
+                                        <div><span class="font-mono bg-teal-50 text-teal-700 px-1.5 py-0.5 rounded">22-11-2026 إلى 26-11-2026</span> (1 أسبوع)</div>
+                                        <div><span class="font-mono bg-teal-50 text-teal-700 px-1.5 py-0.5 rounded">20-12-2026 إلى 24-12-2026</span> (1 أسبوع)</div>
+                                        <div><span class="font-mono bg-teal-50 text-teal-700 px-1.5 py-0.5 rounded">17-01-2027 إلى 21-01-2027</span> (1 أسبوع)</div>
+                                        <div><span class="font-mono bg-teal-50 text-teal-700 px-1.5 py-0.5 rounded">28-02-2027 إلى 04-03-2027</span> (1 أسبوع)</div>
+                                    </div>
+                                </td>
+                                <td class="p-3.5 bg-amber-50/40 text-amber-900 border-r border-slate-200">
+                                    <span class="font-bold text-xs">من 25-04-2027 إلى 29-04-2027</span>
+                                    <div class="text-[11px] text-slate-500 mt-1">امتحانات نهاية التكوين</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Schedule Category 2: El-Harrach Institute (Page 2) -->
+            <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+                <div class="bg-teal-950 text-white px-6 py-4 flex items-center justify-between">
+                    <h3 class="font-bold text-base flex items-center gap-2">
+                        <i class="fa-solid fa-graduation-cap text-amber-400"></i>
+                        رزنامة المعهد الوطني لتكوين مستخدمي التربية وتحسين مستواهم - الحراش (الجزائر)
+                    </h3>
+                    <span class="text-xs bg-teal-900 px-3 py-1 rounded-full border border-teal-800">الصفحة 2 من الوثيقة</span>
+                </div>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-right text-xs md:text-sm">
+                        <thead class="bg-slate-100 text-slate-700 font-bold border-b border-slate-200">
+                            <tr>
+                                <th class="p-3.5">سلك التفتيش والرتبة</th>
+                                <th class="p-3.5">التكوين النظري (420 ساعة)</th>
+                                <th class="p-3.5">التربص التطبيقي (شهران)</th>
+                                <th class="p-3.5">نهاية التكوين والمناقشة</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100">
+                            <!-- المفتشون 1 -->
+                            <tr class="hover:bg-slate-50">
+                                <td class="p-3.5 font-bold text-slate-800">
+                                    • مفتش التعليم الثانوي (المواد)<br>
+                                    • مفتش التعليم المتوسط (رياضيات، علوم فيزيائية وتكنولوجية)<br>
+                                    • مفتش التوجيه والإرشاد المدرسي والمهني
+                                </td>
+                                <td class="p-3.5">
+                                    <div class="space-y-0.5 text-xs">
+                                        <div><span class="font-mono text-emerald-700">02-11-2026 إلى 12-11-2026</span> (2 أسبوع)</div>
+                                        <div><span class="font-mono text-emerald-700">13-12-2026 إلى 24-12-2026</span> (2 أسبوع)</div>
+                                        <div><span class="font-mono text-emerald-700">24-01-2027 إلى 04-02-2027</span> (2 أسبوع)</div>
+                                        <div><span class="font-mono text-emerald-700">28-03-2027 إلى 08-04-2027</span> (2 أسبوع)</div>
+                                        <div><span class="font-mono text-emerald-700">09-05-2027 إلى 20-05-2027</span> (2 أسبوع)</div>
+                                        <div><span class="font-mono text-emerald-700">20-06-2027 إلى 24-06-2027</span> (1 أسبوع)</div>
+                                    </div>
+                                </td>
+                                <td class="p-3.5">
+                                    <div class="space-y-0.5 text-xs">
+                                        <div><span class="font-mono text-teal-700">22-11-2026 إلى 03-12-2026</span> (2 أسبوع)</div>
+                                        <div><span class="font-mono text-teal-700">10-01-2027 إلى 14-01-2027</span> (1 أسبوع)</div>
+                                        <div><span class="font-mono text-teal-700">14-02-2027 إلى 04-03-2027</span> (3 أسابيع)</div>
+                                        <div><span class="font-mono text-teal-700">18-04-2027 إلى 29-04-2027</span> (2 أسبوع)</div>
+                                    </div>
+                                </td>
+                                <td class="p-3.5 bg-amber-50/40 text-amber-900">
+                                    <div class="font-bold text-xs">من 27-06-2027 إلى 01-07-2027</div>
+                                    <div class="text-[11px] text-slate-500">امتحانات نهاية التكوين ومناقشة المذكرة</div>
+                                </td>
+                            </tr>
+
+                            <!-- المفتشون 2 -->
+                            <tr class="hover:bg-slate-50 bg-slate-50/40">
+                                <td class="p-3.5 font-bold text-slate-800">
+                                    • مفتش التعليم المتوسط تخصص المواد:<br>
+                                    <span class="font-normal text-slate-600 text-xs">(عربية، أمازيغية، إنجليزية، فرنسية، علوم طبيعية، تاريخ وجغرافيا، تربية بدنية، موسيقى)</span>
+                                </td>
+                                <td class="p-3.5">
+                                    <div class="space-y-0.5 text-xs">
+                                        <div><span class="font-mono text-emerald-700">15-11-2026 إلى 26-11-2026</span> (2 أسبوع)</div>
+                                        <div><span class="font-mono text-emerald-700">27-12-2026 إلى 07-01-2027</span> (2 أسبوع)</div>
+                                        <div><span class="font-mono text-emerald-700">07-02-2027 إلى 18-02-2027</span> (2 أسبوع)</div>
+                                        <div><span class="font-mono text-emerald-700">11-04-2027 إلى 22-04-2027</span> (2 أسبوع)</div>
+                                        <div><span class="font-mono text-emerald-700">23-05-2027 إلى 03-06-2027</span> (2 أسبوع)</div>
+                                        <div><span class="font-mono text-emerald-700">04-07-2027 إلى 08-07-2027</span> (1 أسبوع)</div>
+                                    </div>
+                                </td>
+                                <td class="p-3.5">
+                                    <div class="space-y-0.5 text-xs">
+                                        <div><span class="font-mono text-teal-700">06-12-2026 إلى 17-12-2026</span> (2 أسبوع)</div>
+                                        <div><span class="font-mono text-teal-700">17-01-2027 إلى 28-01-2027</span> (2 أسبوع)</div>
+                                        <div><span class="font-mono text-teal-700">28-02-2027 إلى 04-03-2027</span> (1 أسبوع)</div>
+                                        <div><span class="font-mono text-teal-700">21-03-2027 إلى 25-03-2027</span> (1 أسبوع)</div>
+                                        <div><span class="font-mono text-teal-700">02-05-2027 إلى 13-05-2027</span> (2 أسبوع)</div>
+                                    </div>
+                                </td>
+                                <td class="p-3.5 bg-amber-50/40 text-amber-900">
+                                    <div class="font-bold text-xs">من 11-07-2027 إلى 15-07-2027</div>
+                                    <div class="text-[11px] text-slate-500">امتحانات نهاية التكوين ومناقشة المذكرة</div>
+                                </td>
+                            </tr>
+
+                            <!-- المفتشون 3: الإدارة والتسيير المالي -->
+                            <tr class="hover:bg-slate-50">
+                                <td class="p-3.5 font-bold text-slate-800">
+                                    • مفتش التعليم الثانوي (إدارة الثانويات)<br>
+                                    • مفتش التعليم المتوسط (إدارة المتوسطات)<br>
+                                    • مفتش التسيير المالي والمادي (ثانويات ومتوسطات)
+                                </td>
+                                <td class="p-3.5">
+                                    <div class="space-y-0.5 text-xs">
+                                        <div><span class="font-mono text-emerald-700">29-11-2026 إلى 10-12-2026</span> (2 أسبوع)</div>
+                                        <div><span class="font-mono text-emerald-700">10-01-2027 إلى 21-01-2027</span> (2 أسبوع)</div>
+                                        <div><span class="font-mono text-emerald-700">14-03-2027 إلى 25-03-2027</span> (2 أسبوع)</div>
+                                        <div><span class="font-mono text-emerald-700">25-04-2027 إلى 06-05-2027</span> (2 أسبوع)</div>
+                                        <div><span class="font-mono text-emerald-700">06-06-2027 إلى 17-06-2027</span> (2 أسبوع)</div>
+                                        <div><span class="font-mono text-emerald-700">18-07-2027 إلى 22-07-2027</span> (1 أسبوع)</div>
+                                    </div>
+                                </td>
+                                <td class="p-3.5">
+                                    <div class="space-y-0.5 text-xs">
+                                        <div><span class="font-mono text-teal-700">20-12-2026 إلى 31-12-2026</span> (2 أسبوع)</div>
+                                        <div><span class="font-mono text-teal-700">14-02-2027 إلى 04-03-2027</span> (3 أسابيع)</div>
+                                        <div><span class="font-mono text-teal-700">04-04-2027 إلى 15-04-2027</span> (2 أسبوع)</div>
+                                        <div><span class="font-mono text-teal-700">16-05-2027 إلى 20-05-2027</span> (1 أسبوع)</div>
+                                    </div>
+                                </td>
+                                <td class="p-3.5 bg-amber-50/40 text-amber-900">
+                                    <div class="font-bold text-xs">من 25-07-2027 إلى 29-07-2027</div>
+                                    <div class="text-[11px] text-slate-500">امتحانات نهاية التكوين ومناقشة المذكرة</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 border-t border-slate-800 text-sm mt-12 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-right">
+            <div>
+                <p class="text-white font-semibold">المنصة التفاعلية لرزنامة وخريطة التكوين 2026 - 2027</p>
+                <p class="text-xs text-slate-500 mt-1">مستخرجة طبقاً للمنشور الوزاري والخريطة الرسمية الصادرة عن وزارة التربية الوطنية</p>
+            </div>
+            <div class="flex items-center gap-4 text-xs">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-950 text-emerald-400 border border-emerald-800">
+                    <i class="fa-solid fa-check-circle"></i> وثيقة رسمية مؤشرة 06.06
+                </span>
+                <span>مديرية التكوين</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC & COMPLETE DATASET -->
+    <script>
+        // --- COMPLETE DATASET EXTRACTED FROM OFFICIAL PAGES 1 TO 8 ---
+        const ALL_WILAYAS = [
+            "أدرار", "الشلف", "الأغواط", "أم البواقي", "باتنة", "بجاية", "بسكرة", "بشار",
+            "البليدة", "البويرة", "تمنراست", "تبسة", "تلمسان", "تيارت", "تيزي وزو",
+            "الجزائر (شرق/وسط/غرب)", "الجلفة", "جيجل", "سطيف", "سعيدة", "سكيكدة",
+            "سيدي بلعباس", "عنابة", "قالمة", "قسنطينة", "المدية", "مستغانم", "المسيلة",
+            "معسكر", "ورقلة", "وهران", "البيض", "إليزي", "برج بوعريريج", "بومرداس",
+            "الطارف", "تندوف", "تيسمسيلت", "الوادي", "خنشلة", "سوق أهراس", "تيبازة",
+            "ميلة", "عين الدفلى", "النعامة", "عين تيموشنت", "غرداية", "غليزان",
+            "تيميمون", "برج باجي مختار", "أولاد جلال", "بني عباس", "إن صالح", "إن قزام",
+            "توقرت", "جانت", "المغير", "المنيعة"
+        ];
+
+        // 13 National Institutes
+        const INSTITUTES_DATA = [
+            {
+                id: "laghouat",
+                name: "معهد الشيخ زاهية حسين",
+                wilaya: "الأغواط",
+                description: "يحتضن التكوين الإداري والمالي لولايات الوسط والجنوب الجزائري.",
+                roles: [
+                    { title: "مدير مدرسة ابتدائية", wilayas: ["الأغواط", "الجلفة"] },
+                    { title: "مدير متوسطة", wilayas: ["الأغواط", "الجلفة"] },
+                    { title: "مشرف عام للتربية", wilayas: ["الأغواط", "الجلفة"] },
+                    { title: "مشرف رئيسي للتربية", wilayas: ["الأغواط", "الجلفة"] },
+                    { title: "نائب مقتصد مسير", wilayas: ["الجلفة", "المدية", "ورقلة", "غرداية", "إن صالح", "الأغواط"] },
+                    { title: "نائب مقتصد", wilayas: ["الجلفة", "المدية", "أولاد جلال"] }
+                ]
+            },
+            {
+                id: "bechar",
+                name: "معهد مقداد بومدين",
+                wilaya: "بشار",
+                description: "المعهد الإقليمي لتكوين موظفي التربية بالجنوب الغربي.",
+                roles: [
+                    { title: "مدير مدرسة ابتدائية", wilayas: ["أدرار", "بشار", "تندوف", "تيميمون", "برج باجي مختار", "بني عباس"] },
+                    { title: "مدير متوسطة", wilayas: ["أدرار", "بشار", "تيميمون", "تندوف"] },
+                    { title: "مشرف عام للتربية", wilayas: ["أدرار", "بشار", "تيميمون", "برج باجي مختار"] },
+                    { title: "مشرف رئيسي للتربية", wilayas: ["أدرار", "بشار"] }
+                ]
+            },
+            {
+                id: "blida",
+                name: "معهد الورود والبنفسج",
+                wilaya: "البليدة",
+                description: "أحد أكبر مراكز التكوين الوطنية لمديري الثانويات والتربية.",
+                roles: [
+                    { title: "مدير ثانوية", wilayas: ["أدرار", "البليدة", "تمنراست", "تيزي وزو", "المدية", "ورقلة", "إليزي", "تندوف", "تيبازة", "برج باجي مختار", "إن صالح", "توقرت"] },
+                    { title: "مدير متوسطة", wilayas: ["البليدة", "البويرة", "تيزي وزو", "المدية", "تيبازة"] },
+                    { title: "مدير مدرسة ابتدائية", wilayas: ["البليدة", "البويرة", "تيزي وزو", "المدية", "تيبازة"] },
+                    { title: "مشرف التربية", wilayas: ["البليدة", "البويرة", "تيزي وزو"] },
+                    { title: "مشرف رئيسي للتربية", wilayas: ["البليدة", "البويرة", "تيزي وزو", "المدية", "تيبازة"] },
+                    { title: "مشرف عام للتربية", wilayas: ["البليدة", "البويرة", "تيزي وزو", "المدية", "تيبازة"] },
+                    { title: "ملحق رئيسي بالمخابر", wilayas: ["البليدة", "تيزي وزو", "الجلفة"] }
+                ]
+            },
+            {
+                id: "tiaret",
+                name: "معهد ابن رشد",
+                wilaya: "تيارت",
+                description: "معهد التكوين لولايات الهضاب الغربية والوسط.",
+                roles: [
+                    { title: "مدير مدرسة ابتدائية", wilayas: ["تيارت", "تيسمسيلت", "عين الدفلى"] },
+                    { title: "مدير متوسطة", wilayas: ["تيارت", "تيسمسيلت", "عين الدفلى"] },
+                    { title: "مشرف التربية", wilayas: ["تيارت", "تيسمسيلت"] },
+                    { title: "مشرف رئيسي للتربية", wilayas: ["تيارت", "عين الدفلى", "تيسمسيلت"] },
+                    { title: "مشرف عام للتربية", wilayas: ["تيارت", "تيسمسيلت", "عين الدفلى"] }
+                ]
+            },
+            {
+                id: "algiers",
+                name: "معهد فاطمة الزهراء",
+                wilaya: "الجزائر",
+                description: "معهد العاصمة لتكوين الإدارة المدرسية وسلك الإشراف التربوي.",
+                roles: [
+                    { title: "مدير ثانوية", wilayas: ["الجزائر شرق", "الجزائر وسط", "الجزائر غرب", "بومرداس"] },
+                    { title: "مدير متوسطة", wilayas: ["الجزائر شرق", "الجزائر وسط", "الجزائر غرب", "بومرداس"] },
+                    { title: "مدير مدرسة ابتدائية", wilayas: ["الجزائر شرق", "الجزائر وسط", "الجزائر غرب", "بومرداس"] },
+                    { title: "مشرف رئيسي للتربية", wilayas: ["الجزائر شرق", "الجزائر وسط", "الجزائر غرب"] },
+                    { title: "مشرف عام للتربية", wilayas: ["الجزائر شرق", "الجزائر وسط", "الجزائر غرب", "بومرداس"] }
+                ]
+            },
+            {
+                id: "setif",
+                name: "معهد الخنساء",
+                wilaya: "سطيف",
+                description: "قطب تكويني كبير لمديري الثانويات وولايات الشرق والهضاب العليا.",
+                roles: [
+                    { title: "مدير ثانوية", wilayas: ["باتنة", "بجاية", "بسكرة", "البويرة", "جيجل", "سطيف", "المسيلة", "برج بوعريريج", "الوادي", "الطارف", "خنشلة", "أولاد جلال", "المغير"] },
+                    { title: "مدير متوسطة", wilayas: ["باتنة", "سطيف", "المسيلة", "برج بوعريريج"] },
+                    { title: "مدير مدرسة ابتدائية", wilayas: ["باتنة", "بجاية", "سطيف", "المسيلة", "برج بوعريريج"] },
+                    { title: "مشرف التربية", wilayas: ["برج بوعريريج"] },
+                    { title: "مشرف رئيسي للتربية", wilayas: ["باتنة", "بجاية", "سطيف", "برج بوعريريج"] },
+                    { title: "مشرف عام للتربية", wilayas: ["باتنة", "بجاية", "سطيف", "المسيلة", "برج بوعريريج"] }
+                ]
+            },
+            {
+                id: "saida",
+                name: "معهد أحمد مدغري",
+                wilaya: "سعيدة",
+                description: "معهد ولاية سعيدة المشرف كذلك على مراكز الإجراء في البيض والنعامة.",
+                roles: [
+                    { title: "مدير مدرسة ابتدائية", wilayas: ["سعيدة"] },
+                    { title: "مدير متوسطة", wilayas: ["سعيدة"] },
+                    { title: "مشرف عام للتربية", wilayas: ["سعيدة"] },
+                    { title: "مشرف رئيسي للتربية", wilayas: ["سعيدة"] }
+                ],
+                supervisedCenters: ["ثانوية سليماني أحمد وأبنائه (البيض)", "ثانوية صدوق الحاج (النعامة)"]
+            },
+            {
+                id: "constantine",
+                name: "معهد مريم بوعتورة",
+                wilaya: "قسنطينة",
+                description: "المعهد المحوري للتكوين المالي والمخبري وسلك الإشراف بشرق البلاد.",
+                roles: [
+                    { title: "مدير مدرسة ابتدائية", wilayas: ["عنابة", "قالمة", "قسنطينة", "الطارف", "خنشلة", "سوق أهراس"] },
+                    { title: "مدير متوسطة", wilayas: ["عنابة", "قالمة", "قسنطينة", "الطارف", "خنشلة", "سوق أهراس"] },
+                    { title: "مشرف التربية", wilayas: ["خنشلة"] },
+                    { title: "مشرف رئيسي للتربية", wilayas: ["عنابة", "قالمة", "قسنطينة", "الطارف", "خنشلة", "سوق أهراس"] },
+                    { title: "مشرف عام للتربية", wilayas: ["عنابة", "قالمة", "قسنطينة", "سوق أهراس", "خنشلة"] },
+                    { title: "نائب مقتصد مسير", wilayas: ["أم البواقي", "باتنة", "بجاية", "بسكرة", "البويرة", "تبسة", "جيجل", "سطيف", "سكيكدة", "عنابة", "قالمة", "قسنطينة", "المسيلة", "إليزي", "الطارف", "الوادي", "خنشلة", "سوق أهراس", "ميلة", "توقرت", "المغير"] },
+                    { title: "نائب مقتصد", wilayas: ["باتنة", "بسكرة", "البويرة", "قسنطينة", "المسيلة", "سوق أهراس", "المغير"] },
+                    { title: "ملحق رئيسي بالمخابر", wilayas: ["تبسة", "عنابة", "قالمة", "الطارف", "سوق أهراس", "ميلة"] }
+                ]
+            },
+            {
+                id: "mostaganem",
+                name: "معهد ابن الزهراء الغالي",
+                wilaya: "مستغانم",
+                description: "معهد ساحلي متخصص في تكوين موظفي التربية والمخابر لولايات الغرب.",
+                roles: [
+                    { title: "مدير مدرسة ابتدائية", wilayas: ["الشلف", "مستغانم"] },
+                    { title: "مدير متوسطة", wilayas: ["الشلف", "مستغانم"] },
+                    { title: "مشرف التربية", wilayas: ["الشلف"] },
+                    { title: "مشرف رئيسي للتربية", wilayas: ["الشلف", "مستغانم"] },
+                    { title: "مشرف عام للتربية", wilayas: ["الشلف", "مستغانم"] },
+                    { title: "ملحق رئيسي بالمخابر", wilayas: ["أدرار", "الشلف", "تيارت", "مستغانم", "عين الدفلى", "النعامة", "عين تيموشنت"] }
+                ]
+            },
+            {
+                id: "mascara",
+                name: "معهد معسكر",
+                wilaya: "معسكر",
+                description: "معهد معسكر الوطني لمديري الثانويات والمتوسطات والإشراف.",
+                roles: [
+                    { title: "مدير ثانوية", wilayas: ["الأغواط", "تيارت", "الجلفة", "سعيدة", "سيدي بلعباس", "معسكر", "غرداية", "غليزان", "بشار", "تيميمون"] },
+                    { title: "مدير متوسطة", wilayas: ["معسكر", "سيدي بلعباس"] },
+                    { title: "مدير مدرسة ابتدائية", wilayas: ["معسكر", "سيدي بلعباس"] },
+                    { title: "مشرف التربية", wilayas: ["معسكر"] },
+                    { title: "مشرف رئيسي للتربية", wilayas: ["سيدي بلعباس", "معسكر"] },
+                    { title: "مشرف عام للتربية", wilayas: ["معسكر", "سيدي بلعباس"] }
+                ]
+            },
+            {
+                id: "ouargla",
+                name: "معهد الفضيل الورتيلاني",
+                wilaya: "ورقلة",
+                description: "معهد واحات الجنوب الكبير لولايات ورقلة، غرداية، تمنراست وتوقرت.",
+                roles: [
+                    { title: "مدير مدرسة ابتدائية", wilayas: ["تمنراست", "ورقلة", "إليزي", "غرداية", "إن صالح", "إن قزام", "توقرت", "جانت", "المنيعة"] },
+                    { title: "مدير متوسطة", wilayas: ["تمنراست", "ورقلة", "إليزي", "غرداية", "إن صالح", "إن قزام", "توقرت", "المنيعة"] },
+                    { title: "مشرف رئيسي للتربية", wilayas: ["تمنراست", "ورقلة", "غرداية", "إن قزام", "توقرت", "جانت", "المنيعة"] },
+                    { title: "مشرف عام للتربية", wilayas: ["تمنراست", "غرداية", "المنيعة"] }
+                ]
+            },
+            {
+                id: "oran",
+                name: "معهد عبد الحميد بن أشنهو",
+                wilaya: "وهران",
+                description: "القطب الغربي للتكوين المالي والمادي ومديري المتوسطات.",
+                roles: [
+                    { title: "مدير مدرسة ابتدائية", wilayas: ["وهران"] },
+                    { title: "مدير متوسطة", wilayas: ["وهران"] },
+                    { title: "مشرف عام للتربية", wilayas: ["وهران"] },
+                    { title: "مشرف رئيسي للتربية", wilayas: ["وهران"] },
+                    { title: "نائب مقتصد مسير", wilayas: ["أدرار", "الشلف", "بشار", "تلمسان", "تيارت", "سعيدة", "سيدي بلعباس", "مستغانم", "معسكر", "وهران", "البيض", "تيسمسيلت", "عين الدفلى", "النعامة", "غليزان", "البليدة", "تيزي وزو", "الجزائر شرق", "الجزائر غرب", "بومرداس", "تيبازة", "تيميمون"] },
+                    { title: "نائب مقتصد", wilayas: ["تلمسان", "تيزي وزو", "الجزائر شرق", "الجزائر وسط", "سيدي بلعباس", "مستغانم", "البيض", "تيبازة", "النعامة"] }
+                ]
+            },
+            {
+                id: "eloued",
+                name: "معهد سيدي مستور",
+                wilaya: "الوادي",
+                description: "معهد وادي سوف المشرف أيضاً على مركز التكوين ببسكرة وأولاد جلال.",
+                roles: [
+                    { title: "مدير مدرسة ابتدائية", wilayas: ["الوادي", "المغير"] },
+                    { title: "مدير متوسطة", wilayas: ["الوادي", "المغير"] },
+                    { title: "مشرف رئيسي للتربية", wilayas: ["الوادي", "بسكرة"] },
+                    { title: "مشرف عام للتربية", wilayas: ["الوادي", "بسكرة", "أولاد جلال", "المغير"] }
+                ],
+                supervisedCenters: ["ثانوية العقيد سي الحواس سابقاً (بسكرة)"]
+            },
+            {
+                id: "mila",
+                name: "معهد عبد الحميد سعيدي",
+                wilaya: "ميلة",
+                description: "معهد ميلة لمديري الثانويات والشمال الشرقي والمشرف على مركز تبسة.",
+                roles: [
+                    { title: "مدير ثانوية", wilayas: ["أم البواقي", "تبسة", "سكيكدة", "عنابة", "قالمة", "قسنطينة", "سوق أهراس"] },
+                    { title: "مدير مدرسة ابتدائية", wilayas: ["أم البواقي", "سكيكدة", "جيجل", "ميلة"] },
+                    { title: "مدير متوسطة", wilayas: ["أم البواقي", "سكيكدة", "جيجل", "ميلة"] },
+                    { title: "مشرف رئيسي للتربية", wilayas: ["سكيكدة", "جيجل", "ميلة"] },
+                    { title: "مشرف عام للتربية", wilayas: ["أم البواقي", "سكيكدة", "جيجل", "ميلة"] }
+                ],
+                supervisedCenters: ["متوسطة بدور حسين (تبسة)"]
+            },
+            {
+                id: "aintemouchent",
+                name: "معهد الشيخ البشير الإبراهيمي",
+                wilaya: "عين تيموشنت",
+                description: "معهد ولاية عين تيموشنت لتكوين مديري الثانويات والإشراف.",
+                roles: [
+                    { title: "مدير ثانوية", wilayas: ["الشلف", "تلمسان", "مستغانم", "وهران", "البيض", "تيسمسيلت", "النعامة", "عين الدفلى", "عين تيموشنت", "بني عباس"] },
+                    { title: "مدير متوسطة", wilayas: ["تلمسان", "عين تيموشنت"] },
+                    { title: "مدير مدرسة ابتدائية", wilayas: ["تلمسان", "عين تيموشنت"] },
+                    { title: "مشرف التربية", wilayas: ["تلمسان", "عين تيموشنت"] },
+                    { title: "مشرف رئيسي للتربية", wilayas: ["عين تيموشنت"] },
+                    { title: "مشرف عام للتربية", wilayas: ["تلمسان", "عين تيموشنت"] }
+                ]
+            },
+            {
+                id: "relizane",
+                name: "معهد غليزان",
+                wilaya: "غليزان",
+                description: "معهد ولاية غليزان لتكوين الإدارة المدرسية وسلك الإشراف.",
+                roles: [
+                    { title: "مدير مدرسة ابتدائية", wilayas: ["غليزان"] },
+                    { title: "مدير متوسطة", wilayas: ["غليزان"] },
+                    { title: "مشرف رئيسي للتربية", wilayas: ["غليزان"] },
+                    { title: "مشرف عام للتربية", wilayas: ["غليزان"] }
+                ]
+            },
+            {
+                id: "harrach",
+                name: "المعهد الوطني لتكوين مستخدمي التربية وتحسين مستواهم (الحراش)",
+                wilaya: "الجزائر (الحراش)",
+                description: "المعهد الوطني العالي المختص حصرياً في التكوين المتخصص لسلك التفتيش (ثانوي، متوسط، وتوجيه مدرسي وإداري ومالي) لكافة ولايات الوطن.",
+                roles: [
+                    { title: "مفتش التعليم الثانوي (المواد وإدارة الثانويات والتسيير المالي)", wilayas: ["جميع ولايات الوطن"] },
+                    { title: "مفتش التعليم المتوسط (المواد وإدارة المتوسطات والتسيير المالي)", wilayas: ["جميع ولايات الوطن"] },
+                    { title: "مفتش التوجيه والإرشاد المدرسي والمهني", wilayas: ["جميع ولايات الوطن"] }
+                ]
+            }
+        ];
+
+        // Specific External Centres (Document Page 8)
+        const SPECIAL_CENTERS = {
+            "البيض": {
+                centerName: "ثانوية سليماني أحمد وأبنائه بولاية البيض",
+                supervisingInstitute: "أحمد مدغري بولاية سعيدة",
+                roles: ["مدير متوسطة", "مدير مدرسة ابتدائية", "مشرف عام للتربية", "مشرف رئيسي للتربية", "مشرف التربية"],
+                reason: "نظراً للأشغال التي مست الإقامة بمعهد سعيدة وطاقة استيعابها تم اعتماد هذه الثانوية كمركز إجراء استثنائي."
+            },
+            "النعامة": {
+                centerName: "ثانوية صدوق الحاج بولاية النعامة",
+                supervisingInstitute: "أحمد مدغري بولاية سعيدة",
+                roles: ["مدير متوسطة", "مدير مدرسة ابتدائية", "مشرف عام للتربية", "مشرف رئيسي للتربية", "مشرف التربية"],
+                reason: "أشغال الإقامة وطاقة استيعاب معهد سعيدة استوجبت فتح ثانوية صدوق الحاج كمركز إجراء تكوين."
+            },
+            "بسكرة": {
+                centerName: "ثانوية العقيد سي الحواس سابقاً بولاية بسكرة",
+                supervisingInstitute: "سيدي مستور بولاية الوادي",
+                roles: ["مدير متوسطة", "مدير مدرسة ابتدائية", "مشرف عام للتربية", "مشرف رئيسي للتربية"],
+                reason: "أشغال الإقامة بمعهد سيدي مستور بالوادي استوجبت احتضان بسكرة للتكوين محلياً."
+            },
+            "أولاد جلال": {
+                centerName: "ثانوية العقيد سي الحواس سابقاً بولاية بسكرة (مشترك مع بسكرة)",
+                supervisingInstitute: "سيدي مستور بولاية الوادي",
+                roles: ["مدير متوسطة", "مدير مدرسة ابتدائية", "مشرف عام للتربية", "مشرف رئيسي للتربية"],
+                reason: "يجرى التكوين بمركز ثانوية العقيد سي الحواس ببسكرة تحت إشراف معهد الوادي."
+            },
+            "تبسة": {
+                centerName: "متوسطة بدور حسين بولاية تبسة",
+                supervisingInstitute: "عبد الحميد سعيدي بولاية ميلة",
+                roles: ["مدير متوسطة", "مدير مدرسة ابتدائية", "مشرف عام للتربية", "مشرف رئيسي للتربية"],
+                reason: "أشغال الإقامة بمعهد ميلة فرضت استغلال متوسطة بدور حسين كمركز إجراء مؤهل."
+            }
+        };
+
+        // --- POPULATE WILAYA SELECTOR ---
+        function initWilayaSelect() {
+            const select = document.getElementById('wilaya-select');
+            ALL_WILAYAS.forEach((w, idx) => {
+                const opt = document.createElement('option');
+                opt.value = w;
+                opt.textContent = `${idx + 1}. ولاية ${w}`;
+                select.appendChild(opt);
+            });
+        }
+
+        // --- SEARCH BY WILAYA ENGINE ---
+        function renderWilayaResults(targetWilaya = null) {
+            const wilaya = targetWilaya || document.getElementById('wilaya-select').value;
+            if (!wilaya) return;
+
+            document.getElementById('wilaya-placeholder').classList.add('hidden');
+            const resultsBox = document.getElementById('wilaya-results');
+            resultsBox.classList.remove('hidden');
+
+            document.getElementById('selected-wilaya-name').textContent = wilaya;
+
+            // Handle special center info
+            const specialBadge = document.getElementById('special-center-badge');
+            const noteBox = document.getElementById('wilaya-note-box');
+            const noteContent = document.getElementById('wilaya-note-content');
+
+            // Normalized check for Wilaya matching
+            let isSpecial = false;
+            let specialInfo = null;
+
+            for (let key in SPECIAL_CENTERS) {
+                if (wilaya.includes(key) || key.includes(wilaya)) {
+                    isSpecial = true;
+                    specialInfo = SPECIAL_CENTERS[key];
+                    break;
+                }
+            }
+
+            if (isSpecial) {
+                specialBadge.classList.remove('hidden');
+                noteBox.classList.remove('hidden');
+                noteContent.innerHTML = `
+                    <div class="font-bold text-amber-900 mb-0.5">تنبيه لمركز إجراء استثنائي (الصفحة 8 من الوثيقة الوزارية):</div>
+                    <p class="text-xs text-amber-800 mb-1"><strong>مركز الإجراء المؤهل:</strong> ${specialInfo.centerName}</p>
+                    <p class="text-xs text-amber-800 mb-1"><strong>المعهد المعني بالإشراف والمتابعة:</strong> ${specialInfo.supervisingInstitute}</p>
+                    <p class="text-[11px] text-amber-700"><strong>الرتب المعنية بالمركز:</strong> ${specialInfo.roles.join('، ')}.</p>
+                    <p class="text-[11px] text-amber-600 mt-1 italic">${specialInfo.reason}</p>
+                `;
+            } else {
+                specialBadge.classList.add('hidden');
+                noteBox.classList.add('hidden');
+            }
+
+            // Find all institutes hosting this wilaya
+            const matchedCards = [];
+
+            // Helper to match wilaya name in list
+            const matchName = (target, query) => {
+                if (query.includes("الجزائر")) {
+                    return target.includes("جزائر") || target.includes("الجزائر");
+                }
+                const cleanQuery = query.replace("ولاية ", "").trim();
+                return target.includes(cleanQuery) || cleanQuery.includes(target);
+            };
+
+            INSTITUTES_DATA.forEach(inst => {
+                const assignedRoles = [];
+
+                inst.roles.forEach(r => {
+                    const found = r.wilayas.some(w => matchName(w, wilaya) || w === "جميع ولايات الوطن");
+                    if (found) {
+                        assignedRoles.push(r.title);
+                    }
+                });
+
+                if (assignedRoles.length > 0) {
+                    matchedCards.push({
+                        institute: inst,
+                        roles: assignedRoles
+                    });
+                }
+            });
+
+            // Render Cards
+            const grid = document.getElementById('wilaya-cards-grid');
+            grid.innerHTML = '';
+
+            if (matchedCards.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-full bg-slate-50 p-8 rounded-xl text-center text-slate-500">
+                        لم يتم العثور على تخصيص مباشر، يرجى مراجعة معهد الحراش لرتب التفتيش، أو المعاهد المركزية بالولاية المنتدبة.
+                    </div>
+                `;
+                return;
+            }
+
+            matchedCards.forEach(item => {
+                const inst = item.institute;
+                const isSupervisedCenterHost = (isSpecial && specialInfo && (inst.wilaya.includes(specialInfo.supervisingInstitute.split(' ')[0]) || specialInfo.supervisingInstitute.includes(inst.name)));
+
+                const card = document.createElement('div');
+                card.className = "bg-white rounded-2xl border border-slate-200/90 shadow-sm hover:shadow-md transition p-5 flex flex-col justify-between";
+                
+                card.innerHTML = `
+                    <div>
+                        <div class="flex items-start justify-between gap-2 border-b border-slate-100 pb-3 mb-3">
+                            <div>
+                                <span class="inline-block px-2.5 py-0.5 rounded text-[11px] font-bold ${inst.id === 'harrach' ? 'bg-purple-100 text-purple-800' : 'bg-emerald-100 text-emerald-800'} mb-1">
+                                    ${inst.wilaya}
+                                </span>
+                                <h4 class="font-bold text-slate-800 text-base hover:text-emerald-700 transition">${inst.name}</h4>
+                            </div>
+                            <div class="w-9 h-9 rounded-xl bg-slate-100 flex items-center justify-center text-slate-500 shrink-0">
+                                <i class="fa-solid fa-school text-emerald-600"></i>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <div class="text-xs font-semibold text-slate-500 mb-2 flex items-center gap-1.5">
+                                <i class="fa-solid fa-list-check text-emerald-600"></i>
+                                الرتب التي يُكوّنها المعهد لولاية <span class="text-emerald-700 font-bold">${wilaya}</span>:
+                            </div>
+                            <ul class="space-y-1.5">
+                                ${item.roles.map(r => `
+                                    <li class="flex items-center gap-2 text-xs font-medium text-slate-700 bg-slate-50 px-2.5 py-1.5 rounded-lg border border-slate-100">
+                                        <i class="fa-solid fa-check text-emerald-500 text-[10px]"></i>
+                                        <span>${r}</span>
+                                    </li>
+                                `).join('')}
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="pt-3 border-t border-slate-100 mt-2 flex items-center justify-between text-xs text-slate-500">
+                        <span class="flex items-center gap-1">
+                            <i class="fa-solid fa-circle-info text-amber-500"></i> 
+                            ${inst.id === 'harrach' ? 'تكوين وطني موحد' : 'تكوين جهوي معتمد'}
+                        </span>
+                        <button onclick="showInstituteModal('${inst.id}')" class="text-emerald-600 font-bold hover:underline">
+                            تفاصيل المعهد &larr;
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function resetWilayaSearch() {
+            document.getElementById('wilaya-select').value = "";
+            document.getElementById('wilaya-results').classList.add('hidden');
+            document.getElementById('wilaya-placeholder').classList.remove('hidden');
+        }
+
+        function selectQuickWilaya(name) {
+            document.getElementById('wilaya-select').value = name;
+            renderWilayaResults(name);
+        }
+
+        // --- SEARCH BY RANK ENGINE ---
+        function renderRankResults() {
+            const role = document.getElementById('rank-select').value;
+            if (!role) return;
+
+            document.getElementById('rank-placeholder').classList.add('hidden');
+            const container = document.getElementById('rank-cards');
+            container.classList.remove('hidden');
+            container.innerHTML = '';
+
+            const matched = [];
+
+            INSTITUTES_DATA.forEach(inst => {
+                inst.roles.forEach(r => {
+                    if (r.title.includes(role) || role.includes(r.title) || (role.includes("مفتش") && inst.id === "harrach")) {
+                        matched.push({
+                            institute: inst,
+                            wilayas: r.wilayas
+                        });
+                    }
+                });
+            });
+
+            if (matched.length === 0) {
+                container.innerHTML = `<div class="col-span-full p-6 text-center text-slate-500 bg-white rounded-xl">لا توجد معطيات مطابقة لهذه الرتبة.</div>`;
+                return;
+            }
+
+            matched.forEach(item => {
+                const card = document.createElement('div');
+                card.className = "bg-white p-5 rounded-2xl border border-slate-200 shadow-sm hover:shadow transition";
+                card.innerHTML = `
+                    <div class="flex items-start justify-between border-b border-slate-100 pb-3 mb-3">
+                        <div>
+                            <span class="bg-emerald-100 text-emerald-800 text-[11px] font-bold px-2 py-0.5 rounded">
+                                ${item.institute.wilaya}
+                            </span>
+                            <h4 class="text-base font-bold text-slate-800 mt-1">${item.institute.name}</h4>
+                        </div>
+                        <i class="fa-solid fa-landmark text-slate-400"></i>
+                    </div>
+
+                    <div class="text-xs text-slate-600 mb-2 font-semibold">
+                        الولايات التابعة للمعهد في رتبة (${role}):
+                    </div>
+                    <div class="flex flex-wrap gap-1.5 max-h-48 overflow-y-auto p-1">
+                        ${item.wilayas.map(w => `
+                            <span class="bg-slate-100 text-slate-700 px-2.5 py-1 rounded-md text-xs border border-slate-200/60 font-medium">
+                                ${w}
+                            </span>
+                        `).join('')}
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // --- INSTITUTES DIRECTORY ---
+        function renderInstitutesDirectory(filtered = null) {
+            const grid = document.getElementById('institutes-grid');
+            grid.innerHTML = '';
+            const data = filtered || INSTITUTES_DATA;
+
+            data.forEach(inst => {
+                const totalRoles = inst.roles.length;
+                const card = document.createElement('div');
+                card.className = "bg-white rounded-2xl border border-slate-200 p-5 shadow-sm hover:border-emerald-500 transition flex flex-col justify-between";
+                
+                card.innerHTML = `
+                    <div>
+                        <div class="flex items-start justify-between mb-3">
+                            <span class="px-2.5 py-1 bg-emerald-50 text-emerald-700 border border-emerald-200 text-xs font-bold rounded-lg">
+                                ولاية ${inst.wilaya}
+                            </span>
+                            <span class="text-xs bg-slate-100 text-slate-600 px-2 py-0.5 rounded font-mono">
+                                ${totalRoles} رتب معنية
+                            </span>
+                        </div>
+                        <h3 class="text-base font-bold text-slate-900 mb-1">${inst.name}</h3>
+                        <p class="text-xs text-slate-500 mb-4 line-clamp-2">${inst.description}</p>
+
+                        <div class="space-y-1 mb-4">
+                            <div class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">أبرز الرتب المكوّنة:</div>
+                            <div class="flex flex-wrap gap-1">
+                                ${inst.roles.slice(0, 3).map(r => `
+                                    <span class="bg-slate-100 text-slate-700 text-[11px] px-2 py-0.5 rounded">
+                                        ${r.title}
+                                    </span>
+                                `).join('')}
+                                ${inst.roles.length > 3 ? `<span class="text-[11px] text-slate-400 px-1">+${inst.roles.length - 3} أخرى</span>` : ''}
+                            </div>
+                        </div>
+                    </div>
+
+                    ${inst.supervisedCenters ? `
+                        <div class="bg-amber-50 border border-amber-200/70 p-2.5 rounded-xl mb-3 text-[11px] text-amber-800">
+                            <strong>يشرف على مراكز استثنائية:</strong><br>
+                            ${inst.supervisedCenters.join('، ')}
+                        </div>
+                    ` : ''}
+
+                    <button onclick="showInstituteModal('${inst.id}')" class="w-full bg-slate-50 hover:bg-emerald-50 text-slate-700 hover:text-emerald-700 font-bold py-2 px-3 rounded-xl text-xs transition border border-slate-200 flex items-center justify-center gap-1.5">
+                        <i class="fa-solid fa-eye"></i> عرض كامل الرتب والتوزيع
+                    </button>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function filterInstitutes() {
+            const query = document.getElementById('institute-filter').value.toLowerCase().trim();
+            if (!query) {
+                renderInstitutesDirectory();
+                return;
+            }
+            const filtered = INSTITUTES_DATA.filter(i => 
+                i.name.toLowerCase().includes(query) || 
+                i.wilaya.toLowerCase().includes(query) ||
+                i.description.toLowerCase().includes(query)
+            );
+            renderInstitutesDirectory(filtered);
+        }
+
+        // --- MODAL POPUP FOR INSTITUTE DETAILS ---
+        function showInstituteModal(instId) {
+            const inst = INSTITUTES_DATA.find(i => i.id === instId);
+            if (!inst) return;
+
+            // Simple custom modal inject
+            const modalEl = document.createElement('div');
+            modalEl.id = "custom-institute-modal";
+            modalEl.className = "fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 animate-fade-in";
+            
+            modalEl.innerHTML = `
+                <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-hidden shadow-2xl flex flex-col">
+                    <div class="bg-gradient-to-r from-emerald-800 to-teal-800 text-white p-5 flex items-center justify-between">
+                        <div>
+                            <span class="text-xs text-emerald-200">المعهد الوطني لتكوين موظفي قطاع التربية</span>
+                            <h3 class="text-lg font-bold">${inst.name} (${inst.wilaya})</h3>
+                        </div>
+                        <button onclick="closeInstituteModal()" class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+
+                    <div class="p-6 overflow-y-auto space-y-4">
+                        <p class="text-xs text-slate-600">${inst.description}</p>
+                        
+                        <h4 class="font-bold text-slate-800 text-sm border-b pb-2 flex items-center gap-2">
+                            <i class="fa-solid fa-list-ol text-emerald-600"></i> تفاصيل الرتب والولايات التابعة لهذا المعهد:
+                        </h4>
+
+                        <div class="space-y-3">
+                            ${inst.roles.map((r, i) => `
+                                <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
+                                    <div class="font-bold text-emerald-900 text-sm mb-1">${i + 1}. رتبة: ${r.title}</div>
+                                    <div class="text-xs text-slate-500 mb-1.5">الولايات المخصصة:</div>
+                                    <div class="flex flex-wrap gap-1">
+                                        ${r.wilayas.map(w => `<span class="bg-white text-slate-700 border border-slate-200 px-2 py-0.5 rounded text-xs font-medium">${w}</span>`).join('')}
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+
+                        ${inst.supervisedCenters ? `
+                            <div class="bg-amber-50 border border-amber-200 p-4 rounded-xl text-xs text-amber-900">
+                                <strong>مؤسسات مؤهلة تحت إشراف المعهد كمركز إجراء:</strong>
+                                <ul class="list-disc list-inside mt-1 space-y-0.5">
+                                    ${inst.supervisedCenters.map(c => `<li>${c}</li>`).join('')}
+                                </ul>
+                            </div>
+                        ` : ''}
+                    </div>
+
+                    <div class="p-4 bg-slate-50 border-t border-slate-200 text-right">
+                        <button onclick="closeInstituteModal()" class="bg-slate-800 hover:bg-slate-900 text-white text-xs font-bold px-5 py-2.5 rounded-xl transition">
+                            إغلاق النافذة
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            document.body.appendChild(modalEl);
+        }
+
+        function closeInstituteModal() {
+            const m = document.getElementById('custom-institute-modal');
+            if (m) m.remove();
+        }
+
+        // --- TAB SWITCHER LOGIC ---
+        function switchTab(tabId) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-pane').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.nav-tab').forEach(btn => {
+                btn.classList.remove('bg-emerald-600', 'text-white', 'shadow');
+                btn.classList.add('text-emerald-100', 'hover:bg-emerald-800/60');
+            });
+
+            // Show selected tab
+            const targetPane = document.getElementById(`tab-${tabId}`);
+            if (targetPane) targetPane.classList.remove('hidden');
+
+            const activeBtn = document.getElementById(`tab-btn-${tabId}`);
+            if (activeBtn) {
+                activeBtn.classList.remove('text-emerald-100', 'hover:bg-emerald-800/60');
+                activeBtn.classList.add('bg-emerald-600', 'text-white', 'shadow');
+            }
+        }
+
+        // --- INITIALIZATION ---
+        window.onload = function () {
+            initWilayaSelect();
+            renderInstitutesDirectory();
+        };
+    </script>
+</body>
+</html>
